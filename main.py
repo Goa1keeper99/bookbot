@@ -1,3 +1,4 @@
+import sys
 from stats import get_num_words
 from stats import get_num_unique_characters
 from stats import chars_dict_to_sorted_list
@@ -7,12 +8,16 @@ def get_book_text(book_path):
         return file.read()
 
 def main():
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    book_path = sys.argv[1]
     #header
     print("============ BOOKBOT ============")
-    print("Analyzing book found at books/frankenstein.txt...")
+    print(f"Analyzing book found at {book_path}...")
     print("----------- Word Count ----------")
     
-    book_path = "books/frankenstein.txt"
+    
     text = get_book_text(book_path)  # Read the file first
     
     # Get word count
